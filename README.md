@@ -32,9 +32,9 @@ Group Project Description:
 - A TODO list application 
 
 - Pages in the app:
-  1. HomePage - the main page of the appp with a navigation to choose
+  1. HomePage - The main page of the app with a bottom navigation bar to choose the page to go to. A welcome page for a user that already has an account because there is a profile page.  
 
-  2. CreateTaskPage + CalendarPage
+  2. CreateTaskPage + CalendarPage - Page where the user can create tasks and put in them in the calendar
 
-  3. ProfileDisplayPage + ProfileEditPage
+  3. ProfileDisplayPage + ProfileEditPage - Page where the profile of the user is shown and the user can also edit the page in the Profile Edit Page. 
 
