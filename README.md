@@ -27,3 +27,11 @@ Group Project:
   2. each member names and matric ID. If you're name is not present, you will not be graded.
 
   3. Summary and Objective of the project
+
+Group Project Description:
+- A TODO list application 
+- Pages in the app:
+1. HomePage - the main page of the appp with a navigation to choose 
+2. CreateTaskPage + CalendarPage
+3. ProfileDisplayPage + ProfileEditPage
+
