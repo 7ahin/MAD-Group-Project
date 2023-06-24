@@ -103,7 +103,7 @@ class _ProfileDisplayPageState extends State<ProfileDisplayPage> {
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(height: 30.0), // Add a gap of 24.0 units
+                const SizedBox(height: 30.0), 
                 const Text(
                   'MY PROFILE PAGE',
                   style: TextStyle(
