@@ -1,7 +1,7 @@
 //profile edit page
- import 'package:flutter/material.dart';
- import 'profile_page.dart';
- import 'package:image_picker/image_picker.dart';
+import 'package:flutter/material.dart';
+import 'profile_page.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileEditPage extends StatefulWidget {
   final UserProfile userProfile;
@@ -49,76 +49,40 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
     );
 
     Navigator.pop(context, updatedProfile);
-
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => ProfileDisplayPage(userProfile: updatedProfile),
-    //   ),
-    // );
   }
-
-  // void _editImage() {
-  //   setState(() {
-  //     _profileImage = 'https://cdn.pixabay.com/photo/2023/06/16/11/47/books-8067850_1280.jpg'; // Replace with your asset image path
-  //     //The use of HTTP library for fetching data/img online 
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // decoration: BoxDecoration(
-      //   gradient: LinearGradient(
-          color: Colors.tealAccent,
-          // [
-          //   hexStringToColor("CB2B93"),
-          //   hexStringToColor("9546c4"),
-          //   hexStringToColor("5E61F4"),
-          // ],
-      //     begin: Alignment.topCenter,
-      //     end: Alignment.bottomCenter,
-      //   ),
-      // ),
+      color: Colors.tealAccent,
       child: Scaffold(
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              const SizedBox(height: 30.0), // Add a gap of 24.0 units
-                const Text(
-                  'EDIT PROFILE',
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontFamily: 'Times New Roman',
-                      fontStyle: FontStyle.italic),
-                ),
-                const SizedBox(height: 24.0), // Add a gap of 24.0 units
+              const SizedBox(height: 30.0), // ada gap 30 height
+              const Text(
+                'EDIT PROFILE',
+                style: TextStyle(
+                    fontSize: 25,
+                    fontFamily: 'Times New Roman',
+                    fontStyle: FontStyle.italic),
+              ),
+              const SizedBox(height: 24.0),
               GestureDetector(
                 onTap: _editImage,
                 child: CircleAvatar(
                   radius: 64.0,
                   backgroundImage: NetworkImage(_profileImage),
-                    child: _profileImage.isEmpty
-                        ? const Icon(
+                  child: _profileImage.isEmpty
+                      ? const Icon(
                           Icons.person,
                           size: 64.0,
                         )
                       : null,
-                  ),
                 ),
-              //     backgroundImage: _profileImage.isNotEmpty
-              //         ? AssetImage(_profileImage)
-              //         : null,
-              //     child: _profileImage.isEmpty
-              //         ? const Icon(
-              //             Icons.person,
-              //             size: 64.0,
-              //           )
-              //         : null,
-              //   ),
-              // ),
+              ),
               const SizedBox(height: 16.0),
               TextField(
                 controller: _nameController,
@@ -130,7 +94,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
               TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(
-                  labelText: 'Email', 
+                  labelText: 'Email',
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -144,8 +108,9 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
               const SizedBox(height: 16.0),
               ElevatedButton(
                 style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              backgroundColor: MaterialStateProperty.all(Colors.grey),),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                  backgroundColor: MaterialStateProperty.all(Colors.grey),
+                ),
                 onPressed: _saveChanges,
                 child: const Text('Save Changes'),
               ),
@@ -155,9 +120,9 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
       ),
     );
   }
+
   void _editImage() async {
-    // Show a dialog to choose between camera and gallery options
-    showDialog(
+    showDialog(     // Show dialog - pop up - ask to choose between camera and gallery to take pic
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -169,8 +134,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                   child: const Text('Camera'),
                   onTap: () async {
                     Navigator.pop(context);
-                    final image =
-                        await ImagePicker().getImage(source: ImageSource.camera);
+                    final image = await ImagePicker()
+                        .getImage(source: ImageSource.camera);
                     if (image != null) {
                       setState(() {
                         _profileImage = image.path;
@@ -183,8 +148,8 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                   child: const Text('Gallery'),
                   onTap: () async {
                     Navigator.pop(context);
-                    final image = await ImagePicker().getImage(
-                        source: ImageSource.gallery);
+                    final image = await ImagePicker()
+                        .pickImage(source: ImageSource.gallery);
                     if (image != null) {
                       setState(() {
                         _profileImage = image.path;
