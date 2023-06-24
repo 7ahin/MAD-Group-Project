@@ -1,6 +1,11 @@
 # MAD-Group-Project
-Group Project
 
+Group Members:
+- ANNESA MAISARAH BINTI AB HAMID 2011728
+- NOR ASYIKIN BINTI AHMAD NASARUDDIN 2014798
+- MUHAMMAD NURZAHIN SALIHIN BIN MOHD HANAFFI 2114185
+
+Group Project: 
 - The project is flexible. You can also extend any part of the code i have provided and make it more usable.
 
 - Consider a project in Flutter that will utilize the following:
