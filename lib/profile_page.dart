@@ -1,9 +1,9 @@
+//profile display page 
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'profile_edit_page.dart';
 import 'package:image_picker/image_picker.dart';
-
 
 void main() {
   runApp(MaterialApp(
@@ -12,8 +12,8 @@ void main() {
         name: 'BCS_Student_01',
         email: '01std@gmail.com',
         bio: 'Hello, I am students_01 studying MAD.',
-        profileImage: 'https://cdn.pixabay.com/photo/2023/06/16/11/47/books-8067850_1280.jpg', // Replace with your asset image path
-        //The use of HTTP library for fetching data/img online      
+        profileImage:
+            'https://cdn.pixabay.com/photo/2023/06/16/11/47/books-8067850_1280.jpg',         //The use of HTTP library for fetching data/img online
       ),
     ),
     theme: ThemeData(
@@ -55,15 +55,17 @@ class _ProfileDisplayPageState extends State<ProfileDisplayPage> {
     _loadUserProfile();
   }
 
-Future<void> _loadUserProfile() async {
-    final prefs = await SharedPreferences.getInstance(); 
+  Future<void> _loadUserProfile() async {
+    final prefs = await SharedPreferences.getInstance();
     //to make sure that the changes are displayed in the profile pg even after naviagte to homepg or create task pg
     setState(() {
       _userProfile = UserProfile(
         name: prefs.getString('name') ?? widget.userProfile.name,
         email: prefs.getString('email') ?? widget.userProfile.email,
         bio: prefs.getString('bio') ?? widget.userProfile.bio,
-        profileImage: prefs.getString('profileImageUrl') ?? widget.userProfile.profileImage,      );
+        profileImage: prefs.getString('profileImageUrl') ??
+            widget.userProfile.profileImage,
+      );
     });
   }
 
@@ -78,47 +80,22 @@ Future<void> _loadUserProfile() async {
       _userProfile = updatedProfile;
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     if (_userProfile == null) {
       return Container(
         color: Colors.white,
         child: const Center(
-          child: CircularProgressIndicator(),// Add a loading indicator while the user profile is being loaded
+          child:
+              CircularProgressIndicator(), // show that the image is loading
         ),
       );
     }
 
-    // return Container(
-    //   decoration: BoxDecoration(
-    //     gradient: LinearGradient(
-    //       colors: [
-    //         hexStringToColor("CB2B93"),
-    //         hexStringToColor("9546c4"),
-    //         hexStringToColor("5E61F4"),
-    //       ],
-    //       begin: Alignment.topCenter,
-    //       end: Alignment.bottomCenter,
-    //     ),
-    //   ),
-      return Container(
-      // decoration: BoxDecoration(
-      //   gradient: LinearGradient(
-          color: Colors.tealAccent,
-          // [
-          //   hexStringToColor("CB2B93"),
-          //   hexStringToColor("9546c4"),
-          //   hexStringToColor("5E61F4"),
-          // ],
-          // begin: Alignment.topCenter,
-          // end: Alignment.bottomCenter,
-      //   ),
-      // ),
+    return Container(
+      color: Colors.tealAccent,
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('Profile'),
-        // ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Container(
@@ -157,23 +134,12 @@ Future<void> _loadUserProfile() async {
                     backgroundImage: NetworkImage(_userProfile.profileImage),
                     child: _userProfile.profileImage.isEmpty
                         ? const Icon(
-                          Icons.person,
-                          size: 64.0,
-                        )
-                      : null,
+                            Icons.person,
+                            size: 64.0,
+                          )
+                        : null,
                   ),
                 ),
-                //     backgroundImage: _userProfile.profileImage.isNotEmpty
-                //         ? AssetImage(_userProfile.profileImage)
-                //         : null,
-                //     child: _userProfile.profileImage.isEmpty
-                //         ? const Icon(
-                //             Icons.person,
-                //             size: 64.0,
-                //           )
-                //         : null,
-                //   ),
-                // ),
                 const SizedBox(height: 16.0),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -211,18 +177,20 @@ Future<void> _loadUserProfile() async {
                 const SizedBox(height: 16.0),
                 ElevatedButton(
                   style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
-                      backgroundColor: MaterialStateProperty.all(Colors.grey),),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    backgroundColor: MaterialStateProperty.all(Colors.grey),
+                  ),
                   onPressed: () async {
                     final updatedProfile = await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => ProfileEditPage(
-                          userProfile: _userProfile, updateUserProfile: (UserProfile ) {  },
+                          userProfile: _userProfile,
+                          updateUserProfile: (UserProfile) {},
                         ),
                       ),
                     );
-                    if(updatedProfile != null) {
+                    if (updatedProfile != null) {
                       _updateUserProfile(updatedProfile);
                     }
                   },
@@ -236,20 +204,3 @@ Future<void> _loadUserProfile() async {
     );
   }
 }
-
-hexStringToColor(String hexColor) {
-  hexColor = hexColor.toUpperCase().replaceAll('#', "");
-  if (hexColor.length == 6) {
-    hexColor = "FF$hexColor";
-  }
-  return Color(int.parse(hexColor, radix: 16));
-}
-
-
-/**With these changes, the ProfileDisplayPage will load the user profile from shared preferences when the page is initialized. 
- * When the "Edit Profile" button is pressed and the ProfileEditPage is shown, the 
- * updated profile will be passed back to ProfileDisplayPage using Navigator.pop. 
- * The updated profile is then stored in shared preferences and displayed on the ProfileDisplayPage.
-Now, whenever you navigate to a different page and then come back to the ProfileDisplayPage, the changes made in the 
-ProfileEditPage will still be there because they are saved and retrieved from shared preferences. */
-
