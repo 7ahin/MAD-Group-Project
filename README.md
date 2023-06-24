@@ -38,3 +38,5 @@ Group Project Description:
 
   3. ProfileDisplayPage + ProfileEditPage - Page where the profile of the user is shown and the user can also edit the page in the Profile Edit Page. 
 
+- The objective of this project is to create an application that the user can create tasks, it is the same as a current TODO app but it has our own style of coding and interface. The user can also pick any categories of the tasks that they have made or will make and they can also navigate through the application using the navigation bar in the homepage. For the profile page, the user can view and edit their profile. 
+
