@@ -31,7 +31,7 @@ Group Project:
 Group Project Description:
 - A TODO list application 
 - Pages in the app:
-1. HomePage - the main page of the appp with a navigation to choose 
+1. HomePage - the main page of the appp with a navigation to choose
 2. CreateTaskPage + CalendarPage
 3. ProfileDisplayPage + ProfileEditPage
 
